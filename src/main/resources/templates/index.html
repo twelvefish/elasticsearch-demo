@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>天瓏網路書店</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/logo-simple.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="天瓏書店">
+    <meta name="apple-mobile-web-app-title" content="天瓏書店">
+    <meta name="msapplication-starturl" content="/">
+
+<!--    <link rel="stylesheet" type="text/css" href="css/index.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="css/index1.css">-->
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/index1.css">
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body class="vsc-initialized" style="overflow: visible;">
+
+<div class="blur-bg" id="app">
+
+    <nav class="center-container">
+        <nav class="grid grid-cols-12 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-800 w-full items-center">
+
+            <a href="/" class="hidden xl:block col-span-3 bg-contain bg-no-repeat bg-center h-16 my-2 mx-4"
+               style="background-image: url(../static/images/logo33.png)"></a>
+
+            <a href="/" class="hidden sm:block xl:hidden col-span-3 bg-contain bg-no-repeat bg-center h-10 m-2"
+               style="background-image: url(../static/images/logo27.png)"></a>
+
+
+            <div class="top-search col-span-6 relative">
+                <form action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+                    <input type="text" v-model="keyword" name="keyword" id="keyword" value="JAVA" class="input-text w-full">
+                    <button class="top-search-btn absolute right-0 border-collapse p-2" @click.prevent="searchKeyword(1)">
+                        <img class="h-5 mx-1" src="../static/images/search-button02.png" alt="">
+                    </button>
+                </form>
+            </div>
+
+
+            <ul class="right-menu col-span-4 sm:col-span-3 flex justify-evenly text-white">
+                <li class="">
+                </li>
+                <li class="flex justify-end xl:hidden">
+                    <a class="menu-btn text-white cursor-pointer" id="menu-btn">
+                        <i class="fa fa-list text-2xl"></i>
+                        <span class="hidden xl:inline-block">選單</span>
+                    </a>
+                    <div class="dropdown transition-all bg-white text-center text-tl_blue text-base w-3/4 sm:w-1/3 md:w-1/3 h-screen z-50 relative "
+                         id="dropdown" style="transition: all 1s ease 0s; left: -100%;">
+                        <ul class="tree-menu">
+                            <li class="relative">
+                                <a href="#" class="block dropdown-main-menu">
+                                    <span>公告</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="block dropdown-main-menu">
+                                    活動
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="block dropdown-main-menu">
+                                    熱門
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="block dropdown-main-menu">
+                                    <span>分類</span>
+                                </a>
+                            </li>
+                            <li><a class="block" href="/tw">中文館</a></li>
+                            <li><a class="block" href="/en">英文館</a></li>
+                            <li><a class="block" href="/cn">簡體館</a></li>
+                            <li><a class="block" href="/hw">硬體館</a></li>
+
+                            <li>
+                                <a href="#" class="block dropdown-main-menu">
+                                    出版社
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="block dropdown-main-menu">
+                                    其他商品
+                                </a>
+                            </li>
+                            <li><a class="block" href="/about">門市資訊</a></li>
+                            <li><a class="block" href="/codingspace">場地資訊</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <div class="side-menu-bg" style="opacity: 0; visibility: hidden;"></div>
+                <button class="member-close-btn hidden focus:outline-none hover:bg-blue-600 text-lg btn-position cursor-pointer text-gray-500 rounded border border-solid border-tl_blue bg-tl_blue w-10 h-10 leading-10">
+                    Xx
+                </button>
+                <li class="alternative-main-menu">
+                    <a href="#">
+                        <i class="fa fa-bars"></i>
+                        <span class="hide"></span>
+                    </a>
+                </li>
+                <li class="log-in">
+                    <a href="/users/sign_in">
+                        <i class="fa fa-user-plus"></i>
+                        <span class="hidden xl:inline-block">會員登入</span>
+                    </a></li>
+
+                <li class="">
+                    <a href="/cart?cart_type=auto">
+                        <span class="hidden sm:inline-block"><i class="fa fa-shopping-cart "></i></span>
+                        <i class="cart-quantity text-white">0</i>
+                        <span class="hidden xl:inline-block">購物車</span>
+                    </a></li>
+            </ul>
+
+        </nav>
+    </nav>
+
+    <nav class="top-nav hidden xl:flex justify-center items-start bg-gradient-to-b from-gray-800 via-gray-800 to-gray-800 text-gray-300 w-full">
+        <ul class="main-menu">
+            <li class="member-menu">
+                <a href="#" class="has-sub-menu">
+                    <span>公告</span>
+                </a>
+            </li>
+
+            <li class="member-menu">
+                <a href="#" class="has-sub-menu">
+                    <span>活動</span>
+                </a>
+            </li>
+
+            <li class=""><a href="/tw">中文館</a></li>
+            <li class=""><a href="/en">英文館</a></li>
+            <li class=""><a href="/cn">簡體館</a></li>
+            <li class=""><a href="/hw">硬體館</a></li>
+
+            <li>
+                <a href="#" class="has-sub-menu">
+                    <span>熱門</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="has-sub-menu">
+                    <span>分類</span>
+                </a>
+            </li>
+
+
+            <li class="">
+                <a href="#" class="has-sub-menu">出版社</a>
+            </li>
+
+            <li class="hidden sm:block">
+                <a href="#" class="has-sub-menu">
+                    <span>其他商品</span>
+                </a>
+            </li>
+
+            <li class=""><a href="/about">門市資訊</a></li>
+            <li class=""><a href="/codingspace">場地資訊</a></li>
+        </ul>
+    </nav>
+
+    <nav class="bg-gray-800 text-white hidden sm:block">
+        <div class="keywords-list flex justify-center items-center p-1 text-xs sm:text-sm overflow-x-auto">
+            <div class="mr-4"><a href="/events/ithome-2021ironman">iThome鐵人賽</a></div>
+            <div class="mr-4"><a href="/events/enservice">英文書代訂</a></div>
+            <div class="mr-4"><a href="/events/5g">5G</a></div>
+            <div class="mr-4"><a href="/events/drmaster-bag">CleanCode</a></div>
+            <div class="mr-4"><a href="/events/painting-01">手工壁畫</a></div>
+            <div class="mr-4"><a href="/events/8-recommendation">#八月主題推薦</a></div>
+            <div class="mr-4"><a href="/events/booklist">#暑假書單</a></div>
+        </div>
+    </nav>
+
+    <div class="center-container">
+        <div class="w-full sm:w-11/12 mx-auto">
+            <div class="content-wrapper">
+                <ul class="nav-tabs">
+                    <li class="active">
+                        <a rel="nofollow" data-method="post" href="/search?keyword=JAVA">天瓏書庫</a>
+                    </li>
+                </ul>
+
+                <div class="content">
+                    <div class="content-inner-block">
+                        <div class="search-filter">
+                            <span class="search-filter-title">分類：</span>
+                            <ul>
+                                <li class="active">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs=all">全部</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;langs%5B%5D=zh_tw">繁體書</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;langs%5B%5D=zh_cn">簡體書</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;langs%5B%5D=en">英文書</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;langs%5B%5D=hw">硬體</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="search-filter">
+                            <span class="search-filter-title">排序：</span>
+                            <ul>
+                                <li class="active">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all">相關性</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;sort=publication_date">出版日期</a>
+                                </li>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;keyword=JAVA&amp;langs%5B%5D=all&amp;sort=salesrank">銷售排行</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="search-filter">
+                            <span class="search-filter-title">顯示方式：</span>
+                            <ul>
+                                <li class="">
+                                    <a href="/search?availability=buyable&amp;display=list&amp;keyword=JAVA&amp;langs%5B%5D=all">
+                                        <i class="fa fa-list"></i>
+                                    </a></li>
+                                <li class=" active control-active">
+                                    <a href="/search?availability=buyable&amp;display=thumb&amp;keyword=JAVA&amp;langs%5B%5D=all">
+                                        <i class="fa fa-th"></i>
+                                    </a></li>
+                            </ul>
+                        </div>
+
+                        <div class="search-result-list px-4">
+                            <ul class="thumb grid grid-cols-12 items-start gap-2">
+                                <li class="col-span-6 md:col-span-3 lg:col-span-2 h-full" v-for="result in results">
+                                    <div class="h-full flex flex-col justify-between mx-4">
+                                        <a class="cover w-full" :href="result.bookhref">
+                                            <img width="140" :alt="result.bookName" :src=result.img>
+                                        </a>
+                                        <div class="book-data">
+                                            <strong class="">
+                                                <a href="/products/9789865025137?list_name=srh" v-html="result.bookName"></a>
+                                            </strong>
+                                            <ul class="item-info">
+                                                <li class="basic">
+                                                    <span class="publish-date">{{result.date}}</span>
+                                                </li>
+                                                <li class="pricing">
+                                                    <span class="price">{{result.price}}</span>
+                                                    <span class="status">立即出貨</span>
+                                                </li>
+                                                <form class="button_to" method="post"
+                                                      action="/cart?id=9789865025137&amp;list_name=srh"><input
+                                                        class="btn add-to-cart" type="submit" value="加入購物車"><input
+                                                        type="hidden" name="authenticity_token"
+                                                        value="Ux5/Rz0VRYfyKIRpAZ6XPi1bKqH/rvR1YUK59TKYL/KUV5644N5kxYr2QuxTrRrF4mzbe7xNUTXlLDF4H4UvLQ==">
+                                                </form>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pagination pagination-footer">
+
+                            <span v-for="i in 5" @click.prevent="searchKeyword(i)">
+                                <em v-if="index == i" class="active">{{i}}</em>
+                                <em v-if="index != i">{{i}}</em>
+                            </span>
+
+                            <span class="gap">…</span>
+
+                            <a rel="next" class="next_page" href="/search?availability=buyable&amp;keyword=JaVa&amp;langs%5B%5D=all&amp;page=2">下一頁</a>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="center-container">
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/%E5%A4%A9%E7%93%8F%E8%B3%87%E8%A8%8A%E5%9C%96%E6%9B%B8-236436558020/">Facebook
+                        粉絲專頁</a>
+                </li>
+                <li>
+                    <a href="/faq">客服與FAQ</a>
+                </li>
+                <li>
+                    <a href="/about">連絡我們</a>
+                </li>
+                <li>
+                    <a href="/privacy">隱私權政策</a>
+                </li>
+                <li>
+                    <a href="/terms">服務條款</a>
+                </li>
+            </ul>
+            <div class="copyright">
+                Copyright © 2021 Tenlong Computer Books Co, Ltd. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script th:src="@{/js/vue.min.js}"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            keyword: '',
+            index: '1',
+            results: []
+        },
+        methods:{
+            searchKeyword: function (index) {
+                var keyword = this.keyword;
+                this.index = index;
+                console.log(keyword);
+                console.log(index);
+                this.results = [];
+                axios.get('http://localhost:9090/search/' + keyword + '/'+ this.index + '/10', {
+                    headers: {"Access-Control-Allow-Origin": "*"}
+                }).then(resp => {
+                    console.log(resp);
+                    this.results = resp.data;
+                })
+
+            }
+
+        }
+
+    })
+</script>
+
+</body>
+</html>
